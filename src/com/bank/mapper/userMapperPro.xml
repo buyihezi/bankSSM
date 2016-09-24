@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bank.mapper.userMapperPro">
+	<!-- 存储过程 -->
+	<select id="getUserById" parameterType="int" resultType="UserInfo"
+		statementType="CALLABLE">
+		CALL GetUserById(#{id})
+	</select>
+	<!-- 创建用户(Create) -->
+	<insert id="addUser" parameterType="UserInfo" statementType="CALLABLE">
+		CALL AddUser(#{username},#{password})
+	</insert>
+
+	<!-- 删除用户(Remove) -->
+	<delete id="deleteUser" parameterType="int" statementType="CALLABLE">
+		CALL
+		DeleteUser(#{id})
+	</delete>
+
+	<!-- 修改用户(Update) -->
+	<update id="updateUser" parameterType="UserInfo" statementType="CALLABLE">
+		CALL UpdateUser(#{username},#{password},#{id})
+	</update>
+	<!-- 查询全部用户 -->
+	<select id="getAllUsers" resultType="UserInfo" statementType="CALLABLE">
+		CALL GetAllUsers()
+	</select>
+</mapper>
